@@ -1,0 +1,35 @@
+.taskInput{
+    background-color: transparent;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+}
+
+.taskInput:focus{
+    outline: none;
+}
+
+.customDatePicker{
+    background-color: transparent;
+    width: 34px;
+    border: 0;
+}
+
+.customDatePicker::-webkit-calendar-picker-indicator {
+    width: 30px;
+    height: 28px; 
+  }
+
+.customDatePicker:hover{
+    border: 0;
+    outline: none;
+}
+
+.customDatePicker:focus{
+    border: 0;
+    outline: none;
+}
+
+.cursorPointer{
+    cursor: pointer;
+}
