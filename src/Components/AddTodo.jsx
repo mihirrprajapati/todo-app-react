@@ -1,34 +1,28 @@
-import { useState } from "react";
+import { useRef } from "react";
 import style from "./AddTodo.module.css";
 
 const AddTodo = ({ setItems }) => {
-  const [task, setTask] = useState("");
-  const [dueDate, setDueDate] = useState("");
+  const taskElement = useRef();
+  const dateElement = useRef();
 
   const addItem = () => {
-    if (task != "" || dueDate != "") {
+    let taskValue = taskElement.current.value;
+    let dateValue = dateElement.current.value;
+    if (taskValue != "" || dateValue != "") {
       setItems((item) => {
         return [
           ...item,
           {
             id: item.length + 1,
-            task: task,
-            dueDate: dueDate,
+            task: taskValue,
+            dueDate: dateValue,
           },
         ];
       });
 
-      setTask("");
-      setDueDate("");
+      taskElement.current.value = "";
+      dateElement.current.value = "";
     }
-  };
-
-  const setTaskValue = (e) => {
-    setTask(e.target.value);
-  };
-
-  const setDateValue = (e) => {
-    setDueDate(e.target.value);
   };
 
   return (
@@ -39,17 +33,15 @@ const AddTodo = ({ setItems }) => {
             <input
               name="task"
               type="text"
-              onChange={setTaskValue}
-              value={task}
+              ref={taskElement}
               className={`w-75 p-2 ${style.taskInput}`}
               placeholder="Enter Task here"
             />
           </div>
           <div className="col-sm-1 col-md-1 col-lg-1">
             <input
+              ref={dateElement}
               type="date"
-              onChange={setDateValue}
-              value={dueDate}
               className={style.customDatePicker}
             />
           </div>
